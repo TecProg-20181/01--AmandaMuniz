@@ -180,14 +180,6 @@ Imagem inverterCores(Imagem imagem) {
   return imagem;
 }
 
-int pixelEigual(Pixel pixel1, Pixel pixel2) {
-  if (pixel1.vermelho == pixel2.vermelho &&
-    pixel1.verde == pixel2.verde &&
-    pixel1.azul == pixel2.azul)
-    return 1;
-  return 0;
-}
-
 Imagem cortarImagem(Imagem imagem ) {
   Imagem cortada;
   int x, y;

@@ -13,6 +13,26 @@ typedef struct _imagem {
   unsigned int altura;
 } Imagem;
 
+Imagem lerImagem(Imagem imagem) {
+  //read type of image
+  char tipo[4];
+  scanf("%s", tipo);
+
+  //read width, heigth and color
+  int maxCor;
+  scanf("%u %u %d", &imagem.largura, &imagem.altura, &maxCor);
+
+  //read all pixels of image
+  for (unsigned int i = 0; i < imagem.altura; ++i) {
+    for (unsigned int j = 0; j < imagem.largura; ++j) {
+      scanf("%hu %hu %hu", &imagem.pixel[i][j].vermelho,
+                           &imagem.pixel[i][j].verde,
+                           &imagem.pixel[i][j].azul);
+    }
+  }
+  return imagem;
+}
+
 Imagem escalaDeCinza(Imagem imagem) {
   for (unsigned int i = 0; i < imagem.altura; ++i) {
     for (unsigned int j = 0; j < imagem.largura; ++j) {
@@ -216,22 +236,7 @@ void printarImagem(Imagem imagem){
 int main() {
   Imagem imagem;
 
-  //read type of image
-  char tipo[4];
-  scanf("%s", tipo);
-
-  //read width, heigth and color
-  int maxCor;
-  scanf("%u %u %d", &imagem.largura, &imagem.altura, &maxCor);
-
-  //read all pixels of image
-  for (unsigned int i = 0; i < imagem.altura; ++i) {
-    for (unsigned int j = 0; j < imagem.largura; ++j) {
-      scanf("%hu %hu %hu", &imagem.pixel[i][j].vermelho,
-                           &imagem.pixel[i][j].verde,
-                           &imagem.pixel[i][j].azul);
-    }
-  }
+  imagem = lerImagem(imagem);
 
   int nOpcoes;
   scanf("%d", &nOpcoes);

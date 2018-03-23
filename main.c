@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-//codigo com falha de segmentação, será corrigido mais tarde
 typedef struct _pixel {
   unsigned short int vermelho;
   unsigned short int verde;
@@ -13,28 +12,6 @@ typedef struct _imagem {
   unsigned int largura;
   unsigned int altura;
 } Imagem;
-
-void lerCabecalhoImagem(Imagem imagem) {
-  int cor;
-  char tipo[4];
-  scanf("%s", tipo);
-  scanf("%u %u %d", &imagem.largura, &imagem.altura, &cor);
-}
-
-void lerCabecalhoPixel(Imagem imagem) {
-  for (unsigned int i = 0; i < imagem.altura; ++i) {
-    for (unsigned int j = 0; j < imagem.largura; ++j) {
-      scanf("%hu %hu %hu", &imagem.pixel[i][j].vermelho,
-                           &imagem.pixel[i][j].verde,
-                           &imagem.pixel[i][j].azul);
-    }
-  }
-}
-
-void lerImagem(Imagem imagem) {
-  lerCabecalhoImagem(imagem);
-  lerCabecalhoPixel(imagem);
-}
 
 Imagem escalaDeCinza(Imagem imagem) {
   for (unsigned int i = 0; i < imagem.altura; ++i) {
@@ -246,7 +223,23 @@ void printarImagem(Imagem imagem){
 
 int main() {
   Imagem imagem;
-  lerImagem(imagem);
+
+  //read type of image
+  char tipo[4];
+  scanf("%s", tipo);
+
+  //read width, heigth and color
+  int maxCor;
+  scanf("%u %u %d", &imagem.largura, &imagem.altura, &maxCor);
+
+  //read all pixels of image
+  for (unsigned int i = 0; i < imagem.altura; ++i) {
+    for (unsigned int j = 0; j < imagem.largura; ++j) {
+      scanf("%hu %hu %hu", &imagem.pixel[i][j].vermelho,
+                           &imagem.pixel[i][j].verde,
+                           &imagem.pixel[i][j].azul);
+    }
+  }
 
   int nOpcoes;
   scanf("%d", &nOpcoes);
